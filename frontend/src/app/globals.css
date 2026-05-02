@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Architects+Daughter&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   ALIGNX — Hand-Drawn / Sketch Theme
+   ============================================ */
+
+/* --- CSS Custom Properties --- */
+:root {
+  --paper-bg: #faf6f0;
+  --paper-lines: #e8ddd0;
+  --ink-dark: #2c2420;
+  --ink-medium: #5a4e45;
+  --ink-light: #8a7e74;
+  --pencil-gray: #a09890;
+  --marker-blue: #4a7ec5;
+  --marker-green: #5ba55e;
+  --marker-orange: #e8853a;
+  --marker-red: #d85a5a;
+  --marker-purple: #8b6bb5;
+  --marker-yellow: #e8c94a;
+  --highlight-yellow: rgba(232, 201, 74, 0.25);
+  --highlight-blue: rgba(74, 126, 197, 0.15);
+  --highlight-green: rgba(91, 165, 94, 0.15);
+  --shadow-sketch: 3px 3px 0px rgba(44, 36, 32, 0.08);
+
+  --font-handwritten: 'Caveat', cursive;
+  --font-body: 'Patrick Hand', cursive;
+  --font-alt: 'Kalam', cursive;
+  --font-heading: 'Architects Daughter', cursive;
+  --font-clean: 'Inter', sans-serif;
+}
+
+/* --- Base Styles --- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper-bg);
+  color: var(--ink-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* --- Paper Texture Background --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200, 180, 155, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(180, 160, 135, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(190, 170, 145, 0.05) 0%, transparent 50%);
+}
+
+/* Notebook lines pattern */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    var(--paper-lines) 31px,
+    var(--paper-lines) 32px
+  );
+  opacity: 0.3;
+}
+
+/* --- Wobble Border Classes --- */
+.sketch-border {
+  border: 2.5px solid var(--ink-dark);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: var(--shadow-sketch);
+}
+
+.sketch-border-light {
+  border: 2px solid var(--ink-light);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.sketch-border-blue {
+  border: 2.5px solid var(--marker-blue);
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  box-shadow: 3px 3px 0px rgba(74, 126, 197, 0.1);
+}
+
+.sketch-border-green {
+  border: 2.5px solid var(--marker-green);
+  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+  box-shadow: 3px 3px 0px rgba(91, 165, 94, 0.1);
+}
+
+.sketch-border-orange {
+  border: 2.5px solid var(--marker-orange);
+  border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  box-shadow: 3px 3px 0px rgba(232, 133, 58, 0.1);
+}
+
+.sketch-border-purple {
+  border: 2.5px solid var(--marker-purple);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: 3px 3px 0px rgba(139, 107, 181, 0.1);
+}
+
+/* --- Highlight / Underline effects --- */
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 55%, var(--highlight-yellow) 55%, var(--highlight-yellow) 90%, transparent 90%);
+  padding: 0 4px;
+}
+
+.highlight-blue {
+  background: linear-gradient(180deg, transparent 55%, var(--highlight-blue) 55%, var(--highlight-blue) 90%, transparent 90%);
+  padding: 0 4px;
+}
+
+.highlight-green {
+  background: linear-gradient(180deg, transparent 55%, var(--highlight-green) 55%, var(--highlight-green) 90%, transparent 90%);
+  padding: 0 4px;
+}
+
+.sketch-underline {
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='8' viewBox='0 0 200 8'%3E%3Cpath d='M0 5 Q25 2, 50 5 T100 5 T150 5 T200 5' fill='none' stroke='%234a7ec5' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: 200px 8px;
+  padding-bottom: 6px;
+}
+
+/* --- Sketch Button --- */
+.sketch-btn {
+  font-family: var(--font-handwritten);
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  background: var(--paper-bg);
+  border: 2.5px solid var(--ink-dark);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 4px 4px 0px var(--ink-dark);
+  color: var(--ink-dark);
+}
+
+.sketch-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+.sketch-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--ink-dark);
+}
+
+.sketch-btn-primary {
+  background: var(--marker-blue);
+  color: white;
+  border-color: #3a6aaa;
+  box-shadow: 4px 4px 0px #3a6aaa;
+}
+
+.sketch-btn-primary:hover {
+  box-shadow: 2px 2px 0px #3a6aaa;
+}
+
+.sketch-btn-primary:active {
+  box-shadow: 0px 0px 0px #3a6aaa;
+}
+
+/* --- Card Styles --- */
+.sketch-card {
+  background: var(--paper-bg);
+  border: 2px solid var(--ink-dark);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: var(--shadow-sketch);
+  padding: 24px;
+  position: relative;
+}
+
+.sketch-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid rgba(44, 36, 32, 0.05);
+  border-radius: 257px 17px 227px 17px / 17px 227px 17px 257px;
+  pointer-events: none;
+}
+
+/* --- Input Styles --- */
+.sketch-input {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px dashed var(--pencil-gray);
+  padding: 12px 8px;
+  color: var(--ink-dark);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.sketch-input:focus {
+  border-bottom-color: var(--marker-blue);
+  border-bottom-style: solid;
+}
+
+.sketch-input::placeholder {
+  color: var(--pencil-gray);
+  font-style: italic;
+}
+
+.sketch-textarea {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  background: rgba(255,255,255,0.4);
+  border: 2.5px dashed var(--pencil-gray);
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  padding: 20px;
+  color: var(--ink-dark);
+  width: 100%;
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.3s ease;
+  line-height: 32px;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    var(--paper-lines) 31px,
+    var(--paper-lines) 32px
+  );
+}
+
+.sketch-textarea:focus {
+  border-color: var(--marker-blue);
+  border-style: solid;
+}
+
+.sketch-textarea::placeholder {
+  color: var(--pencil-gray);
+  font-style: italic;
+}
+
+/* --- Badge / Tag --- */
+.sketch-tag {
+  font-family: var(--font-handwritten);
+  font-size: 1rem;
+  font-weight: 500;
+  display: inline-block;
+  padding: 4px 14px;
+  border: 1.5px solid var(--ink-light);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--ink-medium);
+}
+
+/* --- Score Bar --- */
+.score-bar-track {
+  width: 100%;
+  height: 16px;
+  background: rgba(44, 36, 32, 0.06);
+  border: 1.5px solid var(--pencil-gray);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  overflow: hidden;
+  position: relative;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Doodle Decorations --- */
+.doodle-star {
+  display: inline-block;
+  color: var(--marker-yellow);
+  font-size: 1.5rem;
+  animation: wobble 3s ease-in-out infinite;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawIn {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes scribbleIn {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pencil-gray);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--highlight-yellow);
+  color: var(--ink-dark);
+}
+
+/* --- Loading Spinner (Pencil style) --- */
+.sketch-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px dashed var(--ink-light);
+  border-top-color: var(--marker-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
