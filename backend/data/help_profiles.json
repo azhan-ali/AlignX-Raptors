@@ -1,0 +1,23 @@
+[
+  {
+    "type": "helper",
+    "skills": ["react", "javascript", "css"],
+    "topic": "Frontend Development",
+    "availability": "weekends",
+    "name": "Riya Sharma"
+  },
+  {
+    "type": "helper",
+    "skills": ["python", "dsa", "algorithms"],
+    "topic": "Data Structures & Python",
+    "availability": "evenings",
+    "name": "Rahul Verma"
+  },
+  {
+    "type": "helper",
+    "skills": ["ml", "ai", "python", "numpy", "pandas"],
+    "topic": "Machine Learning",
+    "availability": "flexible",
+    "name": "Ananya Gupta"
+  }
+]
