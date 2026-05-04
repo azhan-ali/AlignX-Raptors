@@ -142,11 +142,13 @@ export default function DashboardPage() {
               <motion.div key="overview" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
 
                 {/* Quick Actions */}
-                <div className="grid md:grid-cols-3 gap-5 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
                   {[
                     { icon: "🎯", title: "Run New Match", desc: "Find fresh opportunities", href: "/opportunities", color: "var(--marker-blue)", border: "sketch-border-blue" },
-                    { icon: "📋", title: "Track Applications", desc: "Update your job progress", onClick: () => setActiveTab("tracker"), color: "var(--marker-green)", border: "sketch-border-green" },
-                    { icon: "🕓", title: "View History", desc: "See past match results", onClick: () => setActiveTab("history"), color: "var(--marker-orange)", border: "sketch-border-orange" },
+                    { icon: "👨‍🏫", title: "Find Mentor", desc: "AI-matched mentors", href: "/find-mentor", color: "var(--marker-green)", border: "sketch-border-green" },
+                    { icon: "🏢", title: "Company Culture", desc: "Get insider insights", href: "/find-advisor", color: "var(--marker-purple)", border: "sketch-border-purple" },
+                    { icon: "📋", title: "Track Applications", desc: "Update your job progress", onClick: () => setActiveTab("tracker"), color: "var(--marker-orange)", border: "sketch-border-orange" },
+                    { icon: "🕓", title: "View History", desc: "See past match results", onClick: () => setActiveTab("history"), color: "var(--marker-blue)", border: "sketch-border-blue" },
                   ].map((card) => (
                     <motion.div key={card.title} whileHover={{ y: -4 }}>
                       {card.href ? (

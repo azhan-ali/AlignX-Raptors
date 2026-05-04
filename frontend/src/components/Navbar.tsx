@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { UserRole } from "@/hooks/useAuth";
 
-interface User { name: string; email: string; year?: string; }
+interface User { name: string; email: string; year?: string; role?: UserRole; }
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -15,14 +16,41 @@ export default function Navbar() {
   useEffect(() => {
     const stored = localStorage.getItem("alignx_user");
     if (stored) setUser(JSON.parse(stored));
+    else setUser(null);
   }, [pathname]);
 
-  const logout = () => { localStorage.removeItem("alignx_user"); setUser(null); };
+  const logout = () => {
+    localStorage.removeItem("alignx_user");
+    setUser(null);
+    window.location.href = "/";
+  };
+
+  const getDashboardPath = () => {
+    if (!user?.role) return "/dashboard";
+    switch (user.role) {
+      case "student_mentor": return "/mentor-dashboard";
+      case "industry_expert": return "/expert-dashboard";
+      default: return "/dashboard";
+    }
+  };
+
+  const getRoleIcon = () => {
+    if (!user?.role) return "🎓";
+    switch (user.role) {
+      case "student_mentor": return "📚";
+      case "industry_expert": return "💼";
+      default: return "🎓";
+    }
+  };
 
   const navLinks = [
     { href: "/", label: "🏠 Home" },
-    { href: "/opportunities", label: "🎯 Match" },
-    ...(user ? [{ href: "/dashboard", label: "📊 Dashboard" }] : []),
+    ...(user?.role === "user" || !user ? [{ href: "/opportunities", label: "🎯 Match" }] : []),
+    ...(user?.role === "user" ? [
+      { href: "/find-mentor", label: "👨‍🏫 Find Mentor" },
+      { href: "/find-advisor", label: "🏢 Company Culture" },
+    ] : []),
+    ...(user ? [{ href: getDashboardPath(), label: "📊 Dashboard" }] : []),
   ];
 
   return (
@@ -37,7 +65,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="px-4 py-1.5 transition-all" style={{ fontFamily: "var(--font-alt)", fontSize: "1rem", color: pathname === link.href ? "var(--marker-blue)" : "var(--ink-medium)", borderBottom: pathname === link.href ? "2.5px solid var(--marker-blue)" : "2.5px solid transparent" }}>
+            <Link key={link.href + link.label} href={link.href} className="px-3 py-1.5 transition-all" style={{ fontFamily: "var(--font-alt)", fontSize: "0.95rem", color: pathname === link.href ? "var(--marker-blue)" : "var(--ink-medium)", borderBottom: pathname === link.href ? "2.5px solid var(--marker-blue)" : "2.5px solid transparent" }}>
               {link.label}
             </Link>
           ))}
@@ -46,8 +74,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <div className="flex items-center gap-3">
-              <Link href="/dashboard" className="flex items-center gap-2 px-3 py-1.5 sketch-border-light hover:opacity-80 transition-opacity" style={{ borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px" }}>
-                <span className="text-xl">🎓</span>
+              <Link href={getDashboardPath()} className="flex items-center gap-2 px-3 py-1.5 sketch-border-light hover:opacity-80 transition-opacity" style={{ borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px" }}>
+                <span className="text-xl">{getRoleIcon()}</span>
                 <span style={{ fontFamily: "var(--font-handwritten)", fontSize: "1.1rem", color: "var(--ink-dark)" }}>{user.name}</span>
               </Link>
               <button onClick={logout} className="sketch-btn !py-1.5 !px-4 !text-sm" style={{ boxShadow: "2px 2px 0px var(--ink-dark)" }}>Logout</button>
@@ -67,7 +95,7 @@ export default function Navbar() {
         {menuOpen && (
           <motion.div className="md:hidden px-4 pb-4 pt-2 mt-2 space-y-2" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} style={{ borderTop: "1.5px dashed var(--paper-lines)" }}>
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className="block py-2" style={{ fontFamily: "var(--font-alt)", color: pathname === link.href ? "var(--marker-blue)" : "var(--ink-medium)" }}>{link.label}</Link>
+              <Link key={link.href + link.label} href={link.href} onClick={() => setMenuOpen(false)} className="block py-2" style={{ fontFamily: "var(--font-alt)", color: pathname === link.href ? "var(--marker-blue)" : "var(--ink-medium)" }}>{link.label}</Link>
             ))}
             {user ? (
               <button onClick={logout} className="sketch-btn w-full !text-sm !py-1.5">Logout</button>

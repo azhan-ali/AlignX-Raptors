@@ -94,8 +94,7 @@ export default function LandingPage() {
           </motion.p>
 
           <motion.p className="text-base mb-10 max-w-xl mx-auto italic" style={{ fontFamily: "var(--font-alt)", color: "var(--pencil-gray)" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
-            &ldquo;We didn&apos;t build another job platform — we built a system that understands you,
-            proves its recommendations, and connects you with peers who can help.&rdquo;
+            {"\u201CWe didn\u2019t build another job platform \u2014 we built a system that understands you, proves its recommendations, and connects you with peers who can help.\u201D"}
           </motion.p>
 
           <motion.div className="flex flex-wrap items-center justify-center gap-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }}>
@@ -117,6 +116,73 @@ export default function LandingPage() {
             ))}
           </motion.div>
         </motion.div>
+      </section>
+
+      <WavyLine />
+
+      {/* ── 3 WAYS TO JOIN ── */}
+      <section className="max-w-5xl mx-auto px-6 py-20">
+        <motion.div className="text-center mb-4" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <span className="sketch-tag !text-sm" style={{ borderColor: "var(--marker-purple)", color: "var(--marker-purple)" }}>✦ One platform, three powerful roles</span>
+        </motion.div>
+        <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <h2 className="text-4xl md:text-6xl mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)", lineHeight: "1.1" }}>
+            3 Ways to <span className="highlight-blue">Join</span> AlignX
+          </h2>
+          <p className="text-xl max-w-2xl mx-auto" style={{ fontFamily: "var(--font-handwritten)", color: "var(--ink-medium)" }}>
+            Whether you&apos;re learning, teaching, or mentoring — there&apos;s a place for you.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: "🎓", title: "Learner", subtitle: "I want to grow my career",
+              points: ["AI-powered job & internship matching", "Find real mentors — students & professionals", "Get company culture insights before applying", "Track applications & skill gaps"],
+              color: "var(--marker-blue)", border: "sketch-border-blue", bg: "rgba(74,126,197,0.05)",
+              cta: "Start Learning →", href: "/auth?mode=signup",
+            },
+            {
+              icon: "📚", title: "Student Mentor", subtitle: "I'm a student who wants to help",
+              points: ["List courses you can teach", "Choose free or paid mentoring", "Get matched with learners via AI", "Build your teaching portfolio"],
+              color: "var(--marker-green)", border: "sketch-border-green", bg: "rgba(91,165,94,0.05)",
+              cta: "Start Teaching →", href: "/auth?mode=signup",
+            },
+            {
+              icon: "💼", title: "Industry Expert", subtitle: "Working professional who gives back",
+              points: ["Mentor students in your expertise", "Share company culture & interview tips", "Be a Company Advisor for aspirants", "Free or paid — your choice"],
+              color: "var(--marker-purple)", border: "sketch-border-purple", bg: "rgba(139,107,181,0.05)",
+              cta: "Start Mentoring →", href: "/auth?mode=signup",
+            },
+          ].map((role, idx) => (
+            <motion.div
+              key={role.title}
+              className={`sketch-card ${role.border}`}
+              style={{ background: role.bg }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.12 }}
+              whileHover={{ y: -6 }}
+            >
+              <div className="text-center mb-4">
+                <span className="text-5xl">{role.icon}</span>
+                <h3 className="text-2xl mt-2" style={{ fontFamily: "var(--font-heading)", color: role.color }}>{role.title}</h3>
+                <p className="text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--pencil-gray)" }}>{role.subtitle}</p>
+              </div>
+              <ul className="space-y-2 mb-6">
+                {role.points.map((pt) => (
+                  <li key={pt} className="flex items-start gap-2 text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>
+                    <span style={{ color: role.color, flexShrink: 0 }}>✓</span> {pt}
+                  </li>
+                ))}
+              </ul>
+              <Link href={role.href} className="sketch-btn w-full text-center block !text-base !py-2.5" style={{ borderColor: role.color, color: role.color, boxShadow: `3px 3px 0px ${role.color}` }}>
+                {role.cta}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       <WavyLine />
