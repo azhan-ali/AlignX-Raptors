@@ -114,44 +114,40 @@ Step 6: 🤝 Peer Help Matching      [TF-IDF]           ~0.05s
 
 ---
 
-## 🚀 One-Command Setup
+## 🚀 How to Test (For Judges)
+
+We have made testing **frictionless**. You don't need to install Node.js or run the frontend locally. You can use our live frontend connected to YOUR local AI backend to verify `qwen2.5:0.5b` running entirely on your machine.
 
 ### Prerequisites
 - Python 3.10+
-- Node.js 18+
 - [Ollama](https://ollama.ai) installed
 
-### Setup (Windows)
-```powershell
-# 1. Pull the model (only once, ~500MB)
+### 1. Start the Local AI Backend (Windows/Mac/Linux)
+```bash
+# 1. Pull the 500M model (only ~300MB download)
 ollama pull qwen2.5:0.5b
-
-# 2. Start Ollama
 ollama serve
 
-# 3. Install backend deps
+# 2. Clone the repo & Start backend
 cd backend
 pip install -r requirements.txt
-
-# 4. Start backend
 python -m uvicorn main:app --reload --port 8000
+```
 
-# 5. In a new terminal — install frontend deps
+### 2. Connect the Live Frontend to Your Local AI
+Once `uvicorn` is running on port 8000, simply click this link (Works best on Chrome/Edge):
+👉 **[Test AlignX with Your Local AI](https://your-vercel.vercel.app/opportunities?backend=http://localhost:8000)**
+
+*The frontend will automatically route all LLM requests to your `http://localhost:8000` instance. You will see real-time inference happening in your terminal!*
+
+### Alternative: Full Local Setup (If browser blocks localhost)
+If your browser blocks mixed content (HTTPS to localhost), simply run the frontend locally too:
+```bash
 cd frontend
 npm install
-
-# 6. Start frontend
 npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) 🎉
-
-### Setup (Mac/Linux)
-```bash
-ollama pull qwen2.5:0.5b && ollama serve &
-cd backend && pip install -r requirements.txt && python -m uvicorn main:app --reload --port 8000 &
-cd frontend && npm install && npm run dev
-```
+Then open `http://localhost:3000` and it will automatically connect to your local backend.
 
 ---
 

@@ -67,7 +67,23 @@ export default function OpportunitiesPage() {
     setLoadingStep(0);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      // DYNAMIC API URL SYSTEM:
+      // 1. Check URL parameters (e.g., ?backend=https://...)
+      // 2. Check localStorage (saves it for later)
+      // 3. Fallback to process.env or localhost
+      let apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      
+      if (typeof window !== "undefined") {
+        const urlParams = new URLSearchParams(window.location.search);
+        const backendFromUrl = urlParams.get("backend");
+        if (backendFromUrl) {
+          apiUrl = backendFromUrl;
+          localStorage.setItem("ALIGNX_BACKEND_URL", backendFromUrl);
+        } else {
+          const storedUrl = localStorage.getItem("ALIGNX_BACKEND_URL");
+          if (storedUrl) apiUrl = storedUrl;
+        }
+      }
       const res = await fetch(`${apiUrl}/api/match`, {
         method: "POST",
         headers: { 
