@@ -9,7 +9,6 @@ from profile_builder import build_profile
 from query_generator import generate_queries
 from rag_engine import retrieve_top, retrieve_top_from_list
 from llm_scorer import score
-from help_matcher import find_helpers
 from advisor import generate_narrative
 from fetch_data import fetch_all_for_profile
 
@@ -165,25 +164,13 @@ async def match(request: Request, data: MatchRequest):
         "output_preview": "Personalized career narrative generated"
     })
 
-    # ─── STEP 6: Peer Matching ───────────────────────────────────────────────
-    t = time.time()
-    helpers = find_helpers(profile)
-    pipeline_steps.append({
-        "step": 6,
-        "name": "Peer Help Matching",
-        "method": "TF-IDF Similarity",
-        "latency_ms": round((time.time() - t) * 1000),
-        "success": True,
-        "output_preview": f"Found {len(helpers)} peer matches"
-    })
-
     total_latency = round((time.time() - pipeline_start) * 1000)
     llm_calls_count = 1 + 1 + len(candidates[:5]) + 1  # profile + query + scoring + narrative
 
     return {
         "profile": profile,
         "results": scored_results,
-        "helpers": helpers,
+        "helpers": [],
         "narrative": narrative,
         "pipeline": {
             "steps": pipeline_steps,
