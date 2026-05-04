@@ -217,36 +217,6 @@ Type one sentence. Get a complete career roadmap.
 
 ---
 
-## 🎯 Why We'll Win
-
-> *Most hackathon projects prove a model works. AlignX proves a system works.*
-
-```
-  ❌ What others do:    One LLM call → one output → done.
-
-  ✅ What AlignX does:  User input
-                         → Sanitized
-                         → Profile extracted (LLM)
-                         → Queries generated (LLM)
-                         → 100+ jobs retrieved (RAG)
-                         → Each scored with reasoning (LLM × 5)
-                         → Career narrative written (LLM)
-                         → Mentor + Advisor matched (AI)
-                         → Pydantic validated at every step
-                         → 3-attempt retry if anything fails
-                         → Deterministic fallback if retries fail
-                         → Result delivered in < 15 seconds
-                         → Cost: ₹ 0.00
-```
-
-**This is not a demo. This is a production-grade system built under constraints.**
-
-The Garage Inference challenge rewards teams who squeeze the most out of the least. We didn't cheat the constraint — we embraced it. **A 500M model is our weapon, not our limitation.**
-
-<br/>
-
----
-
 ## 👥 Feature Breakdown by Role
 
 ### 🎓 For Learners — *Your Personal Career Intelligence Layer*
