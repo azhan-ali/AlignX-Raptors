@@ -48,7 +48,8 @@ function AuthForm() {
     }
 
     setSuccess(true);
-    setTimeout(() => router.push("/opportunities"), 1500);
+    const nextUrl = searchParams.get("next") || "/dashboard";
+    setTimeout(() => router.push(nextUrl), 1500);
   };
 
   const YEAR_OPTIONS = ["1st Year", "2nd Year", "3rd Year", "4th Year", "Recent Graduate", "Working Professional"];
@@ -88,7 +89,7 @@ function AuthForm() {
                   {mode === "signup" ? "Account created successfully!" : "Welcome back!"}
                 </p>
                 <p className="text-sm mt-2" style={{ fontFamily: "var(--font-alt)", color: "var(--pencil-gray)" }}>
-                  Redirecting you to Opportunities...
+                  Redirecting you to your Dashboard...
                 </p>
               </motion.div>
             )}

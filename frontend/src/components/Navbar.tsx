@@ -21,7 +21,8 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "🏠 Home" },
-    { href: "/opportunities", label: "🎯 Opportunities" },
+    { href: "/opportunities", label: "🎯 Match" },
+    ...(user ? [{ href: "/dashboard", label: "📊 Dashboard" }] : []),
   ];
 
   return (
@@ -45,10 +46,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 sketch-border-light" style={{ borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px" }}>
+              <Link href="/dashboard" className="flex items-center gap-2 px-3 py-1.5 sketch-border-light hover:opacity-80 transition-opacity" style={{ borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px" }}>
                 <span className="text-xl">🎓</span>
                 <span style={{ fontFamily: "var(--font-handwritten)", fontSize: "1.1rem", color: "var(--ink-dark)" }}>{user.name}</span>
-              </div>
+              </Link>
               <button onClick={logout} className="sketch-btn !py-1.5 !px-4 !text-sm" style={{ boxShadow: "2px 2px 0px var(--ink-dark)" }}>Logout</button>
             </div>
           ) : (

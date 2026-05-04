@@ -11,6 +11,10 @@ import SkillGapSection from "@/components/SkillGapSection";
 import HelpMatcherSection from "@/components/HelpMatcherSection";
 import CareerCoach from "@/components/CareerCoach";
 import PipelineStatus from "@/components/PipelineStatus";
+import SaveResults from "@/components/SaveResults";
+import SalaryEstimator from "@/components/SalaryEstimator";
+import PeerChat from "@/components/PeerChat";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Profile { skills: string[]; skill_score: number; year: string; goal: string; domain?: string; level?: string; raw: string; extraction_method?: string; }
 interface Opportunity { title: string; company: string; location?: string; type?: string; score?: number; matched_skills?: string[]; missing_skills?: string[]; reason?: string; confidence?: string; }
@@ -40,21 +44,13 @@ const LOADING_STEPS = [
 ];
 
 export default function OpportunitiesPage() {
+  const { user, loading: authLoading } = useAuth(true);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [inputMode, setInputMode] = useState<"form" | "voice">("form");
   const [voiceTranscript, setVoiceTranscript] = useState("");
   const [loadingStep, setLoadingStep] = useState(0);
-  const [userName, setUserName] = useState<string>("");
-
-  useEffect(() => {
-    const u = localStorage.getItem("alignx_user");
-    if (u) {
-      const parsed = JSON.parse(u);
-      setUserName(parsed.name || "");
-    }
-  }, []);
 
   // Cycle through loading steps for UX feedback
   useEffect(() => {
@@ -79,9 +75,7 @@ export default function OpportunitiesPage() {
         body: JSON.stringify({ text }),
       });
 
-      if (res.status === 429) {
-        throw new Error("Too many requests! Please wait 60 seconds before trying again.");
-      }
+      if (res.status === 429) throw new Error("Too many requests! Please wait 60 seconds before trying again.");
       if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
       const json: ApiResponse = await res.json();
@@ -94,6 +88,19 @@ export default function OpportunitiesPage() {
     }
   }
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--paper-bg)" }}>
+        <div className="text-center">
+          <div className="sketch-spinner mx-auto mb-4" />
+          <p style={{ fontFamily: "var(--font-handwritten)", color: "var(--marker-blue)", fontSize: "1.3rem" }}>Checking your account...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) return null;
+
   return (
     <>
       <Navbar />
@@ -101,8 +108,8 @@ export default function OpportunitiesPage() {
         <div className="max-w-3xl mx-auto px-4">
           <motion.div className="text-center mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-4xl md:text-5xl mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)" }}>
-              {userName ? `Hey ${userName}! ` : ""}Describe{" "}
-              <span className="highlight-yellow">Yourself</span> 🎓
+              Hey {user.name}!{" "}
+              <span className="highlight-yellow">Describe Yourself</span> 🎓
             </h1>
             <p className="text-lg max-w-xl mx-auto mb-5" style={{ fontFamily: "var(--font-body)", color: "var(--ink-light)" }}>
               No resume needed. AlignX runs a 6-step AI pipeline on Qwen 0.5B to find your best career matches.
@@ -182,7 +189,6 @@ export default function OpportunitiesPage() {
                 <p className="text-sm mt-4" style={{ fontFamily: "var(--font-alt)", color: "var(--pencil-gray)" }}>
                   Qwen 2.5 0.5B · Running locally · ₹0 cost · Please wait 10–20 seconds
                 </p>
-                {/* Mini pipeline progress */}
                 <div className="flex justify-center gap-1.5 mt-5">
                   {LOADING_STEPS.map((_, i) => (
                     <div
@@ -202,15 +208,22 @@ export default function OpportunitiesPage() {
         <AnimatePresence>
           {data && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+
+              {/* Success banner */}
               <div className="max-w-3xl mx-auto px-4 mt-8">
                 <div className="p-4 sketch-card sketch-border-green text-center">
                   <p className="text-xl" style={{ fontFamily: "var(--font-handwritten)", color: "var(--marker-green)" }}>
                     🎉 Done! Qwen 0.5B ran {data.pipeline?.llm_calls ?? "?"} LLM calls in {((data.pipeline?.total_latency_ms ?? 0) / 1000).toFixed(1)}s for ₹0. Scroll down!
                   </p>
                 </div>
+
+                {/* Save Results Banner — right after success */}
+                <div className="mt-4">
+                  <SaveResults data={data} userEmail={user.email} />
+                </div>
               </div>
 
-              {/* Pipeline status — show the engineering */}
+              {/* Pipeline status */}
               {data.pipeline && <PipelineStatus pipeline={data.pipeline} />}
 
               <WavyDivider />
@@ -220,14 +233,24 @@ export default function OpportunitiesPage() {
               <OpportunityMatcher results={data.results} />
 
               <WavyDivider />
-              {/* Career Mirror — most innovative feature */}
-              {data.narrative && <CareerCoach narrative={data.narrative} userName={userName} />}
+              {data.narrative && <CareerCoach narrative={data.narrative} userName={user.name} />}
 
               <WavyDivider />
               <SkillGapSection results={data.results} profileSkills={data.profile.skills} />
 
               <WavyDivider />
+              {/* Salary Estimator — new feature */}
+              <SalaryEstimator profile={data.profile} />
+
+              <WavyDivider />
               <HelpMatcherSection helpers={data.helpers} />
+
+              <WavyDivider />
+              {/* Peer Chat — new feature */}
+              {data.helpers && data.helpers.length > 0 && (
+                <PeerChat helpers={data.helpers} currentUser={user.email} />
+              )}
+
             </motion.div>
           )}
         </AnimatePresence>

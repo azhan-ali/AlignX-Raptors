@@ -62,7 +62,7 @@ const SKILL_SUGGESTIONS = [
 ];
 
 interface GuidedFormProps {
-  onSubmit: (text: string, formData: FormData) => void;
+  onSubmit: (text: string, formData?: FormData) => void;
   isLoading: boolean;
 }
 
