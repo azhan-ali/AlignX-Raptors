@@ -10,7 +10,7 @@ import OpportunityMatcher from "@/components/OpportunityMatcher";
 import SkillGapSection from "@/components/SkillGapSection";
 import HelpMatcherSection from "@/components/HelpMatcherSection";
 import CareerCoach from "@/components/CareerCoach";
-import PipelineStatus from "@/components/PipelineStatus";
+
 import SaveResults from "@/components/SaveResults";
 import SalaryEstimator from "@/components/SalaryEstimator";
 import PeerChat from "@/components/PeerChat";
@@ -69,7 +69,8 @@ export default function OpportunitiesPage() {
     setLoadingStep(0);
 
     try {
-      const res = await fetch("http://localhost:8000/api/match", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${apiUrl}/api/match`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -223,10 +224,7 @@ export default function OpportunitiesPage() {
                 </div>
               </div>
 
-              {/* Pipeline status */}
-              {data.pipeline && <PipelineStatus pipeline={data.pipeline} />}
-
-              <WavyDivider />
+              {/* Pipeline status hidden — results shown directly */}
               <ProfileDashboard profile={data.profile} />
 
               <WavyDivider />

@@ -7,10 +7,11 @@ from collections import defaultdict
 
 from profile_builder import build_profile
 from query_generator import generate_queries
-from rag_engine import retrieve_top
+from rag_engine import retrieve_top, retrieve_top_from_list
 from llm_scorer import score
 from help_matcher import find_helpers
 from advisor import generate_narrative
+from fetch_data import fetch_all_for_profile
 
 app = FastAPI(
     title="AlignX Backend",
@@ -111,16 +112,24 @@ async def match(request: Request, data: MatchRequest):
         "output_preview": f"Generated {len(queries)} search queries"
     })
 
-    # ─── STEP 3: RAG Retrieval ───────────────────────────────────────────────
+    # ─── STEP 3: Live Fetch + RAG Retrieval ─────────────────────────────────
     t = time.time()
-    candidates = retrieve_top(profile, queries=queries, k=8)
+    # Fetch live, profile-specific opportunities from Adzuna + Internshala
+    live_opps = fetch_all_for_profile(profile)
+    # If live fetch fails or returns nothing, fall back to static file
+    if not live_opps:
+        candidates = retrieve_top(profile, queries=queries, k=8)
+        fetch_source = "static-fallback"
+    else:
+        candidates = retrieve_top_from_list(profile, live_opps, queries=queries, k=8)
+        fetch_source = "live"
     pipeline_steps.append({
         "step": 3,
         "name": "RAG Retrieval",
-        "method": "TF-IDF + Cosine Similarity (bigrams)",
+        "method": f"TF-IDF + Cosine Similarity (bigrams) [{fetch_source}: {len(live_opps)} fetched]",
         "latency_ms": round((time.time() - t) * 1000),
         "success": len(candidates) > 0,
-        "output_preview": f"Retrieved {len(candidates)} candidates"
+        "output_preview": f"Retrieved {len(candidates)} candidates from {len(live_opps)} live opportunities"
     })
 
     # ─── STEP 4: LLM Scoring ────────────────────────────────────────────────
