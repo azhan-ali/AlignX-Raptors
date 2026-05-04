@@ -12,8 +12,6 @@ import HelpMatcherSection from "@/components/HelpMatcherSection";
 import CareerCoach from "@/components/CareerCoach";
 
 import SaveResults from "@/components/SaveResults";
-import SalaryEstimator from "@/components/SalaryEstimator";
-import PeerChat from "@/components/PeerChat";
 import { useAuth } from "@/hooks/useAuth";
 
 interface Profile { skills: string[]; skill_score: number; year: string; goal: string; domain?: string; level?: string; raw: string; extraction_method?: string; }
@@ -237,17 +235,7 @@ export default function OpportunitiesPage() {
               <SkillGapSection results={data.results} profileSkills={data.profile.skills} />
 
               <WavyDivider />
-              {/* Salary Estimator — new feature */}
-              <SalaryEstimator profile={data.profile} />
-
-              <WavyDivider />
               <HelpMatcherSection helpers={data.helpers} />
-
-              <WavyDivider />
-              {/* Peer Chat — new feature */}
-              {data.helpers && data.helpers.length > 0 && (
-                <PeerChat helpers={data.helpers} currentUser={user.email} />
-              )}
 
             </motion.div>
           )}
