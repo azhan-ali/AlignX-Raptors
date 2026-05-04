@@ -11,8 +11,8 @@ interface VoiceInputProps {
 
 declare global {
   interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
   }
 }
 
@@ -21,7 +21,7 @@ export default function VoiceInput({ onTranscript, onSubmit, isLoading }: VoiceI
   const [transcript, setTranscript] = useState("");
   const [isSupported, setIsSupported] = useState(false);
   const [waveHeights, setWaveHeights] = useState<number[]>(Array(12).fill(4));
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const waveRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function VoiceInput({ onTranscript, onSubmit, isLoading }: VoiceI
     recognition.continuous = true;
     recognition.interimResults = true;
 
-    recognition.onresult = (e: SpeechRecognitionEvent) => {
+    recognition.onresult = (e: any) => {
       let full = "";
       for (let i = 0; i < e.results.length; i++) {
         full += e.results[i][0].transcript + " ";
