@@ -11,7 +11,7 @@ Student goal: {goal}
 Opportunity: {title} at {company} — requires: {description}
 
 Return ONLY this JSON:
-{{"score": 72, "matched_skills": ["python"], "missing_skills": ["react"], "reason": "One sentence why.", "confidence": "medium"}}
+{{"score": <0-100>, "matched_skills": ["<skill>"], "missing_skills": ["<skill>"], "reason": "One sentence why.", "confidence": "<low/medium/high>"}}
 
 JSON only:'''
 

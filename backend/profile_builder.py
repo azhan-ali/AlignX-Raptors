@@ -9,16 +9,16 @@ PROFILE_PROMPT = '''Extract career info from this student description. Return ON
 
 Student text: "{text}"
 
-Return exactly this JSON:
-{{"skills": ["python", "react"], "year": "2nd year", "goal": "internship", "domain": "web development", "level": "beginner", "location": "remote"}}
+Use this JSON structure but fill in the real extracted data:
+{{"skills": ["<skill1>", "<skill2>"], "year": "<year>", "goal": "<goal>", "domain": "<domain>", "level": "<level>", "location": "<location>"}}
 
 Rules:
-- skills: only real tech skills (languages, frameworks, tools)
-- year: one of 1st year / 2nd year / 3rd year / 4th year / fresher / working professional
-- goal: one of internship / job / freelance / research / open source
-- domain: main tech field (web development / ai machine learning / data science / mobile / devops / cybersecurity / other)
-- level: beginner (1-3 skills) / intermediate (4-7 skills) / advanced (8+ skills)
-- location: remote / hybrid / on-site / any
+- skills: extract tech skills (languages, frameworks) from text
+- year: 1st year / 2nd year / 3rd year / 4th year / fresher / working professional
+- goal: internship / job / freelance / research
+- domain: web / ai / data / mobile / devops / cybersecurity
+- level: beginner / intermediate / advanced
+- location: remote / hybrid / on-site
 
 JSON only, no explanation:'''
 
