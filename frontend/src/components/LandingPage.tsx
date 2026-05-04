@@ -244,17 +244,17 @@ export default function LandingPage() {
 
       <WavyLine />
 
-      {/* ── 10 POWERFUL FEATURES ── */}
+      {/* ── POWERFUL FEATURES ── */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div className="text-center mb-4" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <span className="sketch-tag !text-sm" style={{ borderColor: "var(--marker-orange)", color: "var(--marker-orange)" }}>✦ Everything you need, nothing you don&apos;t</span>
+          <span className="sketch-tag !text-sm" style={{ borderColor: "var(--marker-orange)", color: "var(--marker-orange)" }}>✦ Built for the entire career journey</span>
         </motion.div>
         <motion.div className="text-center mb-4" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
           <h2 className="text-4xl md:text-6xl mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)", lineHeight: "1.1" }}>
-            10 Features that <span className="highlight-blue">actually help</span> you
+            Features that <span className="highlight-blue">actually help</span> you
           </h2>
           <p className="text-xl max-w-2xl mx-auto" style={{ fontFamily: "var(--font-handwritten)", color: "var(--ink-medium)" }}>
-            Not fluff. Not generic. Built specifically for Indian students who are tired of applying blindly.
+            Not fluff. Not generic. A complete 3-role ecosystem for Learners, Mentors, and Advisors.
           </p>
         </motion.div>
 
@@ -275,20 +275,20 @@ export default function LandingPage() {
                 <div className="flex gap-3 flex-wrap">
                   <span className="text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--marker-blue)" }}>✓ Voice input support</span>
                   <span className="text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--marker-blue)" }}>✓ Auto skill extraction</span>
-                  <span className="text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--marker-blue)" }}>✓ 0–100 profile score</span>
+                  <span className="text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--marker-blue)" }}>✓ Strict JSON validation</span>
                 </div>
               </div>
             </div>
           </motion.div>
 
           <motion.div className="sketch-card sketch-border-orange" whileHover={{ y: -5 }} style={{ background: "linear-gradient(135deg, rgba(232,133,58,0.04) 0%, rgba(255,255,255,0) 100%)" }}>
-            <div className="text-5xl mb-3">💰</div>
+            <div className="text-5xl mb-3">🤝</div>
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-xl" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-orange)" }}>Salary Estimator</h3>
+              <h3 className="text-xl" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-orange)" }}>Ecosystem Match</h3>
               <span className="sketch-tag !text-xs !py-0.5 !px-2" style={{ borderColor: "var(--marker-orange)", color: "var(--marker-orange)" }}>NEW</span>
             </div>
-            <p className="text-sm mb-3" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Know your worth <em>before</em> you apply. Get a realistic ₹ range based on your actual skills — not some generic number.</p>
-            <p className="text-xl font-bold" style={{ fontFamily: "var(--font-handwritten)", color: "var(--marker-green)" }}>₹5K → ₹45K/month 💸</p>
+            <p className="text-sm mb-3" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Get paired with the right <strong>Student Mentor</strong> AND the right <strong>Industry Insider</strong> based on semantic skill overlap.</p>
+            <p className="text-xl font-bold" style={{ fontFamily: "var(--font-handwritten)", color: "var(--marker-green)" }}>Direct access 💬</p>
           </motion.div>
         </motion.div>
 
@@ -297,7 +297,7 @@ export default function LandingPage() {
 
           <motion.div className="sketch-card sketch-border-green" whileHover={{ y: -5 }}>
             <div className="text-5xl mb-3">📡</div>
-            <h3 className="text-xl mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-green)" }}>Real Data Only</h3>
+            <h3 className="text-xl mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-green)" }}>Live RAG Engine</h3>
             <p className="text-sm mb-3" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>100+ <strong>live opportunities</strong> fetched fresh every time — Adzuna API + Internshala scraper. Zero fake listings, ever.</p>
             <div className="p-2 rounded-lg text-center" style={{ background: "var(--highlight-green)", border: "1.5px dashed var(--marker-green)" }}>
               <p className="text-sm font-bold" style={{ fontFamily: "var(--font-handwritten)", color: "var(--marker-green)" }}>50 jobs + 50 internships = 100+ matches</p>
@@ -306,10 +306,10 @@ export default function LandingPage() {
 
           <motion.div className="sketch-card sketch-border-orange" whileHover={{ y: -5 }}>
             <div className="text-5xl mb-3">⚡</div>
-            <h3 className="text-xl mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-orange)" }}>AI Scoring Engine</h3>
+            <h3 className="text-xl mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-orange)" }}>AI Scoring &amp; Logic</h3>
             <p className="text-sm mb-3" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Qwen 0.5B scores every opportunity <strong>0–100</strong> with full reasoning — matched skills, missing skills, why it&apos;s a fit. No black box.</p>
             <div className="flex justify-between text-sm" style={{ fontFamily: "var(--font-alt)", color: "var(--pencil-gray)" }}>
-              <span>🤖 5 LLM calls</span><span>⏱ ~15 seconds</span><span>₹0 cost</span>
+              <span>🤖 Pydantic Guards</span><span>⏱ ~15 seconds</span>
             </div>
           </motion.div>
 
@@ -332,9 +332,9 @@ export default function LandingPage() {
           </motion.div>
 
           <motion.div className="sketch-card sketch-border-purple" whileHover={{ y: -5 }}>
-            <div className="text-4xl mb-2">💬</div>
-            <h3 className="text-lg mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-purple)" }}>Peer Chat</h3>
-            <p className="text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Message matched peers <strong>directly inside</strong> the app. No spam, no LinkedIn cold DMs — real help only.</p>
+            <div className="text-4xl mb-2">💰</div>
+            <h3 className="text-lg mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-purple)" }}>Salary Estimator</h3>
+            <p className="text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Get an instant, realistic salary range based on your exact skillset and market data.</p>
           </motion.div>
 
           <motion.div className="sketch-card sketch-border-blue" whileHover={{ y: -5 }}>
@@ -343,34 +343,34 @@ export default function LandingPage() {
             <p className="text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Track every application — Saved → Applied → Interview → Offer. Your personal Kanban, always ready.</p>
           </motion.div>
 
-          <motion.div className="sketch-card sketch-border-green" whileHover={{ y: -5 }}>
+          <motion.div className="sketch-card sketch-border-orange" whileHover={{ y: -5 }}>
             <div className="text-4xl mb-2">📊</div>
-            <h3 className="text-lg mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-blue)" }}>Dashboard</h3>
-            <p className="text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Your career hub — history, salary, matches, peers. One place. Zero confusion.</p>
+            <h3 className="text-lg mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--marker-orange)" }}>3-Role Hubs</h3>
+            <p className="text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--ink-medium)" }}>Dedicated dashboards for Learners, Mentors, and Advisors. One place. Zero confusion.</p>
           </motion.div>
         </motion.div>
 
         {/* Bottom CTA bar */}
         <motion.div className="mt-10 sketch-card sketch-border-blue text-center" style={{ background: "var(--highlight-blue)" }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
           <p className="text-2xl" style={{ fontFamily: "var(--font-handwritten)", color: "var(--ink-dark)" }}>
-            All 10 features. One platform. Zero cost. <span style={{ color: "var(--marker-blue)" }}>Forever free for students. 🎓</span>
+            An entire career ecosystem. One platform. Zero cost. <span style={{ color: "var(--marker-blue)" }}>Forever free for students. 🎓</span>
           </p>
         </motion.div>
       </section>
 
       <WavyLine />
 
-      {/* ── HOW IT WORKS ── */}
+      {/* ── THE 6-STEP PIPELINE ── */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <motion.div className="text-center mb-4" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <span className="sketch-tag !text-sm" style={{ borderColor: "var(--marker-green)", color: "var(--marker-green)" }}>✦ Takes less than 20 seconds to start</span>
+          <span className="sketch-tag !text-sm" style={{ borderColor: "var(--marker-green)", color: "var(--marker-green)" }}>✦ Takes less than 15 seconds</span>
         </motion.div>
         <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
           <h2 className="text-4xl md:text-6xl mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)", lineHeight: "1.1" }}>
-            From <span className="highlight-yellow">confused</span> to <span className="highlight-green">hired</span> — in 8 steps
+            The <span className="highlight-yellow">6-Step AI</span> Pipeline
           </h2>
           <p className="text-xl" style={{ fontFamily: "var(--font-handwritten)", color: "var(--ink-medium)" }}>
-            No CV. No cover letter. No keyword gaming. Just you, honestly.
+            How our 500M model does the work of GPT-4 through pure engineering discipline.
           </p>
         </motion.div>
 
@@ -381,52 +381,40 @@ export default function LandingPage() {
           <div className="space-y-5">
             {[
               {
-                num: "1", emoji: "🔐", title: "Create your free account",
-                desc: "30 seconds. Just name + email. Unlock your personal dashboard, match history, and salary tracker — all waiting for you.",
-                badge: "30 sec setup", badgeColor: "var(--marker-green)",
-                impact: "Your data stays private. No spam. No credit card.",
+                num: "1", emoji: "🧠", title: "Step 1: Profile Extraction",
+                desc: "Qwen 0.5B reads your natural language input ('I know Python, 2nd year') and extracts a strict Pydantic-validated structured JSON profile with skills, domain, and experience level.",
+                badge: "Strict JSON", badgeColor: "var(--marker-blue)",
+                impact: "No complex forms. Just speak or type.",
               },
               {
-                num: "2", emoji: "🎤", title: "Speak or type in plain language",
-                desc: "\"I know React and Python, I\'m in 3rd year CSE, looking for a remote internship.\" That&apos;s all we need. No resume uploads, no perfect wording required.",
-                badge: "Voice supported", badgeColor: "var(--marker-purple)",
-                impact: "Works in Hinglish too. Just be yourself.",
+                num: "2", emoji: "🔍", title: "Step 2: Smart Query Generation",
+                desc: "The AI synthesizes optimized, multi-angle search queries based on your extracted profile to ensure maximum coverage in our opportunity database.",
+                badge: "Query Eng", badgeColor: "var(--marker-purple)",
+                impact: "Finds jobs you wouldn't have thought to search for.",
               },
               {
-                num: "3", emoji: "🧠", title: "AI extracts your complete profile",
-                desc: "Qwen 0.5B reads your words and builds a structured profile: skills list, domain, goal, experience level, and a 0–100 readiness score.",
-                badge: "< 2 seconds", badgeColor: "var(--marker-blue)",
-                impact: "\"Score 38/100 — Beginner-Intermediate ML track.\"  It just knows.",
+                num: "3", emoji: "📡", title: "Step 3: Live RAG Retrieval",
+                desc: "Using TF-IDF + Cosine Similarity, we search 100+ REAL opportunities fetched live from Adzuna API and Internshala.",
+                badge: "Live Data", badgeColor: "var(--marker-orange)",
+                impact: "Zero fake data. Real jobs with real deadlines.",
               },
               {
-                num: "4", emoji: "📡", title: "100+ real opportunities fetched live",
-                desc: "Not a database from 2022. Fresh jobs from Adzuna API + Internshala scraped right now. Real companies, real roles, real deadlines.",
-                badge: "Live data", badgeColor: "var(--marker-orange)",
-                impact: "50 jobs + 50 internships = 100+ real matches every time.",
+                num: "4", emoji: "⚡", title: "Step 4: Opportunity Scoring",
+                desc: "Qwen 0.5B scores the top candidates from 0-100, reasoning exactly why each one matches based on matched skills, missing skills, and confidence score.",
+                badge: "5 LLM calls", badgeColor: "var(--marker-green)",
+                impact: "Transparent scoring. Never a black box.",
               },
               {
-                num: "5", emoji: "⚡", title: "Every match gets an AI score + reason",
-                desc: "The LLM doesn\'t just rank — it explains. \"You match 4/6 required skills. Missing: Docker, Kubernetes. Confidence: High.\" Zero guessing.",
-                badge: "5 LLM calls", badgeColor: "var(--marker-blue)",
-                impact: "Transparent. Honest. Never a black box.",
-              },
-              {
-                num: "6", emoji: "🪞", title: "Your Career Mirror is written for you",
-                desc: "A 500M model writes your honest career summary, identifies the ONE thing holding you back, and gives you a 3-step action plan. For free.",
+                num: "5", emoji: "🪞", title: "Step 5: Career Mirror Narrative",
+                desc: "Your personal AI coach writes a brutally honest career summary, identifies your core skill gap, and generates a concrete 3-step action plan.",
                 badge: "Personalized", badgeColor: "var(--marker-purple)",
-                impact: "\"Learn React in 2 weeks — it unlocks 8 more jobs for you specifically.\"  ",
+                impact: "\"Learn React — it unlocks 8 more jobs for you.\"",
               },
               {
-                num: "7", emoji: "💰", title: "Know your salary before you apply",
-                desc: "Your Salary Estimator shows a realistic ₹ range based on YOUR skills and the current Indian market. No surprises in the HR call.",
-                badge: "Instant", badgeColor: "var(--marker-orange)",
-                impact: "\"Your React skill is your highest-value asset. Lean in.\"  ",
-              },
-              {
-                num: "8", emoji: "🤝", title: "Chat with peers. Track every application.",
-                desc: "Message matched peers who can actually help you. Then track every application (Saved → Applied → Interview → Offer) in your dashboard. All saved.",
-                badge: "Your career hub", badgeColor: "var(--marker-green)",
-                impact: "Everything in one place. Come back anytime — your progress waits for you.",
+                num: "6", emoji: "🤝", title: "Step 6: Ecosystem Matching",
+                desc: "Connects you seamlessly with the best Student Mentor and Industry Advisor based on semantic skill overlap from your profile.",
+                badge: "AI Matching", badgeColor: "var(--marker-blue)",
+                impact: "Real guidance from real people who match your goals.",
               },
             ].map((step, idx) => (
               <motion.div
@@ -456,7 +444,7 @@ export default function LandingPage() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 flex-wrap mb-1">
                     <p className="text-xl font-bold" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)" }}>
-                      Step {step.num} — {step.title}
+                      {step.title}
                     </p>
                     <span
                       className="sketch-tag !text-xs !py-0.5 !px-2"
@@ -492,7 +480,7 @@ export default function LandingPage() {
         >
           <p className="text-3xl mb-3">🚀</p>
           <p className="text-2xl mb-2" style={{ fontFamily: "var(--font-heading)", color: "var(--ink-dark)" }}>
-            You&apos;re literally 30 seconds away from your best match.
+            You&apos;re literally 15 seconds away from your best match.
           </p>
           <p className="text-lg mb-5" style={{ fontFamily: "var(--font-handwritten)", color: "var(--ink-light)" }}>
             15 million graduates. Most apply blindly. You don&apos;t have to.
